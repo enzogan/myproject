@@ -1,0 +1,17 @@
+
+<title>Student form</title>
+
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css"/>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/widgets.css"/>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css"/>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/global.css"/>
+
+<form action="" method="post">
+    {% csrf_token %}
+
+    <table>
+    {{ form.as_table }}
+    </table>
+
+    <input type="submit" value="Submit" />
+</form>

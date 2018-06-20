@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<title>Student form</title>
+
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css"/>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/widgets.css"/>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css"/>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/global.css"/>
+
+<h1>Delete Author</h1>
+
+<p>Are you sure you want to delete the author: {{ student }}?</p>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Yes, delete" />
+</form>
+</html>

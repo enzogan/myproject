@@ -1,0 +1,22 @@
+import datetime
+from django import forms
+
+BIRTH_YEAR_CHOICES = ','.join('{}'.format(i) for i in range(datetime.datetime.now().year-120, datetime.datetime.now().year+1)).split(',')
+COLORS = (
+    ('blue', 'Bleu'),
+    ('green', 'Green'),
+    ('black', 'Black'),
+)
+
+class NameForm(forms.Form):
+    your_name = forms.CharField(label='Name', max_length=100, help_text='Enter your name')
+    your_email = forms.EmailField(label='Email', label_suffix=" @ : ", max_length=100)
+    your_url = forms.URLField(label='URL', max_length=100)
+    your_time = forms.TimeField(label='Time(hh:mm:ss)',initial="01:20:00", required=False)
+    your_ip = forms.GenericIPAddressField(label='IP', max_length=100)
+    your_password = forms.CharField(label='Pass', max_length=30, widget=forms.PasswordInput)
+    your_ack = forms.BooleanField(required=False)
+    your_birth_year = forms.DateField(widget=forms.SelectDateWidget(years=BIRTH_YEAR_CHOICES))
+    your_colors = forms.MultipleChoiceField(required=False, choices=COLORS)
+    your_color = forms.ChoiceField(required=False, widget=forms.CheckboxSelectMultiple ,choices=COLORS)
+    your_date = forms.DateField(label='Date(YYYY-MM-DD ou MM/DD/YY)', required=False    your_date = forms.DateField(label='Date(YYYY-MM-DD ou MM/DD/YY)', required=False))

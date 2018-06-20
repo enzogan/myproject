@@ -1,0 +1,34 @@
+import datetime
+from django import forms
+from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext_lazy as _
+
+
+BIRTH_YEAR_CHOICES = ','.join('{}'.format(i) for i in range(datetime.datetime.now().year-120, datetime.datetime.now().year+1)).split(',')
+COLORS = (
+    ('blue', 'Bleu'),
+    ('green', 'Green'),
+    ('black', 'Black'),
+)
+
+class NameForm(forms.Form):
+    your_name = forms.CharField(label='Name', max_length=100, help_text='Enter your name')
+    your_email = forms.EmailField(label='Email', label_suffix=" @ : ", max_length=100)
+    your_password = forms.CharField(label='Pass', max_length=30, widget=forms.PasswordInput)
+    your_colors =  forms.MultipleChoiceField(label='couleur pref?', required=False, widget=forms.CheckboxSelectMultiple, choices=COLORS)
+    renewal_date = forms.DateField(label='prochaine visite ?(jj/mm/aaaa)', help_text="Enter a date between now and 4 weeks.",widget=forms.)
+
+    #Pour vérifier que la date entrée est entre il y a 4 semaine et aujourd'hui
+
+    def clean_renewal_date(self):
+        data = self.cleaned_data['renewal_date        
+        #Check date is not in past. 
+        if data < datetime.date.today():
+            raise ValidationError(_('Invalid date - renewal in past'))
+
+        #Check date is in range librarian allowed to change (+4 weeks).
+        if data > datetime.date.today() + datetime.timedelta(weeks=4):
+            raise ValidationError(_('Invalid date - renewal more than 4 weeks ahead'))
+
+        # Remember to always return the cleaned data.
+        return data

@@ -1,0 +1,36 @@
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css"/>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/widgets.css"/>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css"/>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/global.css"/>
+<h1>Student List</h1>
+
+{% if student_list %}
+ {% for student in student_list  %}
+   <p><a href="{% url 'myapp1:student_detail' student.id %}">{{ student.name }}</a></p>
+ {% endfor %}
+{% else %}
+ <p>There are no students</p>
+ {% endif %}
+</br><hr>
+<p><a href="{% url 'myapp1:student_create' %}">Add new student</a></p>
+</br></br></br></br>
+
+<hr>
+{% block pagination %}
+  {% if is_paginated %}
+      <div class="pagination">
+          <span class="page-links">
+              {% if page_obj.has_previous %}
+                  <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+              {% endif %}
+              <span class="page-current">
+                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+              </span>
+              {% if page_obj.has_next %}
+                  <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+              {% endif %}
+          </span>
+      </div>
+  {% endif %}
+{% endblock %}
+<p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>

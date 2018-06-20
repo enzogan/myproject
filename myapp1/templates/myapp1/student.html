@@ -1,0 +1,14 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'myapp1/style.css' %}" />
+
+{% if studlist %}
+    <ul>
+    {% for student in studlist %}
+        <li><a href="{% url 'myapp1:student_update' student.id %}">{{ student.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No students are available.</p>
+{% endif %}
+

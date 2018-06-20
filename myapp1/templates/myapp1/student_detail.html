@@ -1,0 +1,16 @@
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css"/>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/widgets.css"/>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css"/>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/global.css"/>
+<h1>Student: {{ student.name }}</h1>
+
+<p><strong>Email:</strong> {{ student.email }}</p>
+<p><strong>Color:</strong> {{ student.color }}</p>
+<p><strong>Date:</strong> {{ student.date }}</p> 
+<p><strong>ajouté par:</strong> {{ student.creator }}</p>
+
+<p><a href="{% url 'myapp1:student_update' student.id %}">UPDATE</a></p> 
+
+<p><a href="{% url 'myapp1:student_delete' student.id %}">DELETE</a></p> 
+
+<p><a href="{% url 'myapp1:student_list' %}"> <- Back to Student list </a></p>
